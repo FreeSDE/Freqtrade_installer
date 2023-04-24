@@ -1,17 +1,22 @@
 # update repository
+cd ..
 echo "Updating repository"
+sleep 1
 sudo apt-get update
 
 # install packages
 echo "Installing Dependencies"
+sleep 1
 sudo apt install -y python3-pip python3-venv python3-dev python3-pandas git curl
 
 # Download `develop` branch of freqtrade repository
 echo "Downloading Repository"
+sleep 1
 git clone https://github.com/freqtrade/freqtrade.git
 
 # Enter downloaded directory
 echo "Changing dir: /freqtrade"
+sleep 1
 cd freqtrade
 
 # Checks if directory is correct
