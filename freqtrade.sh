@@ -1,3 +1,12 @@
+$answer
+$version="v0.1"
+echo "Do you want docker [Y/n] "
+read $answer
+#Switches to docker install than exits
+if [$answer!="n"]; then
+	echo "Srry, this repository doesn't have docker. Don't worry the current version is $version"
+fi
+
 # update repository
 cd ..
 echo "Updating repository"
