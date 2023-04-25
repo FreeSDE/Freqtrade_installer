@@ -2,6 +2,10 @@
   "ExpandedNodes": [
     ""
   ],
+<<<<<<< HEAD
   "SelectedNode": "\\README.md",
+=======
+  "SelectedNode": "\\freqtrade.sh",
+>>>>>>> b77752010a9e92f7dec7a5d5372193129e084d9c
   "PreviewInSolutionExplorer": false
 }
