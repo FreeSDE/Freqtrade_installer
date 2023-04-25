@@ -8,7 +8,7 @@ As of now, installing through docker is not a viable option.
 
 Thank you for downloading the installer
 
-Sincerely, The Owner
+Sincerely, FreeSDE
 
 
 Disclaimer: We are not here to steal, we don't own freqtrade or freqtrade.io and I am just a developer who decided to make a installer.
