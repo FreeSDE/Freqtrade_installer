@@ -12,11 +12,11 @@ cd ..
 echo "Updating repository"
 sleep 1
 if ping -c 1 archive.ubuntu.com &> /dev/null; then
-	echo ""
 	
-else
-	echo -e "ERR: Internet connection doesn't exist or very weak.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router"
 	return
+else
+	echo -e "ERR: Internet connection doesn't exist.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router"
+	exit
 fi
 
 sudo apt-get update
@@ -25,11 +25,11 @@ sudo apt-get update
 echo "Installing Dependencies"
 sleep 1
 if ping -c 1 archive.ubuntu.com &> /dev/null; then
-	echo ""
 	
-else
-	echo -e "ERR: Internet connection doesn't exist or very weak.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
 	return
+else
+	echo -e "ERR: Internet connection doesn't exist.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
+	exit
 fi
 sudo apt install -y python3-pip python3-venv python3-dev python3-pandas git curl
 
@@ -37,21 +37,24 @@ sudo apt install -y python3-pip python3-venv python3-dev python3-pandas git curl
 echo "Downloading Repository"
 sleep 1
 if ping -c 1 github.com &> /dev/null; then
-	echo ""
 	
-else
-	echo -e "ERR: Internet connection doesn't exist or very weak.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
 	return
+else
+	echo -e "ERR: Internet connection doesn't exist.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
+	exit
 fi
 git clone https://github.com/freqtrade/freqtrade.git
-
+if [ $? -ne 0 ]; then
+	echo "ERR: Something went wrong, check the above for a possible error"
+	exit
+fi
 # Enter downloaded directory
 echo "Verifying if directory exists"
-if [ -d freqtrade ]; then
-    echo "Verification successful"
+if [ -d /path/to/folder ]; then
+  echo "Verification successful"
 else
-    echo "ERR: Folder doesn't exist!. Installation possibly failed?"
-    return
+  echo "ERR: Folder doesn't exist!. Installation possibly failed?"
+  exit
 fi
 echo "Going to dir: /freqtrade"
 sleep 1
@@ -64,6 +67,6 @@ git checkout stable
 ./setup.sh -i
 if [ $? -ne 0 ]; then
 	echo "ERR: Something went wrong, check the above for a possible error"
-	return
+	exit
 fi
 echo -e "You're now ready to run the bot!\nAll you need to do is 'source .env/bin/activate' to enter the enviroment and 'freqtrade --help' and figure out what to do next!"
