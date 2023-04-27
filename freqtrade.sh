@@ -1,5 +1,5 @@
 $answer
-$version="v0.1"
+$version="pre v0.1"
 echo "Do you want docker [Y/n] "
 read $answer
 #Switches to docker install than exits
@@ -11,39 +11,58 @@ fi
 cd ..
 echo "Updating repository"
 sleep 1
-
-sudo apt-get update
-if [ $? -ne 0 ]; then
-	echo "ERR: Something went wrong, check the above for a possible error"
+if ping -c 1 archive.ubuntu.com &> /dev/null; then
+	
+	return
+else
+	echo -e "ERR: Internet connection doesn't exist.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router"
 	exit
 fi
+
+sudo apt-get update
+
 # install packages
 echo "Installing Dependencies"
 sleep 1
-sudo apt install -y python3-pip python3-venv python3-dev python3-pandas git curl
-if [ $? -ne 0 ]; then
-	echo "ERR: Something went wrong, check the above for a possible error"
+if ping -c 1 archive.ubuntu.com &> /dev/null; then
+	
+	return
+else
+	echo -e "ERR: Internet connection doesn't exist.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
 	exit
 fi
+sudo apt install -y python3-pip python3-venv python3-dev python3-pandas git curl
+
 # Download `develop` branch of freqtrade repository
 echo "Downloading Repository"
 sleep 1
+if ping -c 1 github.com &> /dev/null; then
+	
+	return
+else
+	echo -e "ERR: Internet connection doesn't exist.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
+	exit
+fi
 git clone https://github.com/freqtrade/freqtrade.git
 if [ $? -ne 0 ]; then
 	echo "ERR: Something went wrong, check the above for a possible error"
 	exit
 fi
 # Enter downloaded directory
-echo "Changing dir: /freqtrade"
+echo "Verifying if directory exists"
+if [ -d /path/to/folder ]; then
+  echo "Verification successful"
+else
+  echo "ERR: Folder doesn't exist!. Installation possibly failed?"
+  exit
+fi
+echo "Going to dir: /freqtrade"
 sleep 1
 cd freqtrade
 
 # Checks if directory is correct
 git checkout stable
-if [ $? -ne 0 ]; then
-	echo "ERR: Something went wrong, check the above for a possible error"
-	exit
-fi
+
 # --install, Install freqtrade from scratch
 ./setup.sh -i
 if [ $? -ne 0 ]; then
