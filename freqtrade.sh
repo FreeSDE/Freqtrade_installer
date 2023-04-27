@@ -12,8 +12,8 @@ cd ..
 echo "Updating repository"
 sleep 1
 if ping -c 1 archive.ubuntu.com &> /dev/null; then
+	echo ""
 	
-	return
 else
 	echo -e "ERR: Internet connection doesn't exist.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router"
 	exit
@@ -25,8 +25,8 @@ sudo apt-get update
 echo "Installing Dependencies"
 sleep 1
 if ping -c 1 archive.ubuntu.com &> /dev/null; then
+	echo ""
 	
-	return
 else
 	echo -e "ERR: Internet connection doesn't exist.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
 	exit
@@ -37,20 +37,17 @@ sudo apt install -y python3-pip python3-venv python3-dev python3-pandas git curl
 echo "Downloading Repository"
 sleep 1
 if ping -c 1 github.com &> /dev/null; then
+	echo ""
 	
-	return
 else
 	echo -e "ERR: Internet connection doesn't exist.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
 	exit
 fi
 git clone https://github.com/freqtrade/freqtrade.git
-if [ $? -ne 0 ]; then
-	echo "ERR: Something went wrong, check the above for a possible error"
-	exit
-fi
+
 # Enter downloaded directory
 echo "Verifying if directory exists"
-if [ -d /path/to/folder ]; then
+if [ -d freqtrade ]; then
   echo "Verification successful"
 else
   echo "ERR: Folder doesn't exist!. Installation possibly failed?"
