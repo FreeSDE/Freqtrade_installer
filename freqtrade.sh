@@ -1,9 +1,9 @@
-$answer
-$version="pre v0.1"
+answer
+version="pre v0.1"
 echo "Do you want docker [y/n] "
-read $answer
+read answer
 #Switches to docker install than exits
-if [ $answer! = "n" ]; then
+if [ answer != "n" ]; then
 	echo "Srry, this repository doesn't have docker. Don't worry the current version is $version"
 fi
 
@@ -14,7 +14,6 @@ sleep 1
 # Checks if internet exists
 if ping -c 1 archive.ubuntu.com &> /dev/null; then
 	echo ""
-	
 else
 	echo -e "ERR: Internet connection doesn't exist or you have weak internet.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router"
 	return
@@ -28,7 +27,6 @@ sleep 1
 # Checks if internet exists
 if ping -c 1 archive.ubuntu.com &> /dev/null; then
 	echo ""
-	
 else
 	echo -e "ERR: Internet connection doesn't exist or you have weak internet.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
 	return
@@ -41,7 +39,6 @@ sleep 1
 # Checks if internet exists
 if ping -c 1 github.com &> /dev/null; then
 	echo ""
-	
 else
 	echo -e "ERR: Internet connection doesn't exist or you have weak internet.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
 	return
