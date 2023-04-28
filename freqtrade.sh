@@ -1,4 +1,4 @@
-answer
+answer=""
 version="pre v0.1"
 RED='\033[0;31m' # Color red
 NC='\033[0m' # No Color
@@ -18,6 +18,7 @@ if ping -c 1 archive.ubuntu.com &> /dev/null; then
 	echo ""
 else
 	echo -e "${RED}ERR${NC}: Internet connection doesn't exist or you have weak internet.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router"
+	cd Freqtrade_installer
 	return
 fi
 
@@ -31,6 +32,7 @@ if ping -c 1 archive.ubuntu.com &> /dev/null; then
 	echo ""
 else
 	echo -e "${RED}ERR${NC}: Internet connection doesn't exist or you have weak internet.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
+	cd Freqtrade_installer
 	return
 fi
 sudo apt install -y python3-pip python3-venv python3-dev python3-pandas git curl
@@ -43,6 +45,7 @@ if ping -c 1 github.com &> /dev/null; then
 	echo ""
 else
 	echo -e "${RED}ERR${NC}: Internet connection doesn't exist or you have weak internet.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router\n\nif all option fail than it is possible that software doesn't exist"
+	cd Freqtrade_installer
 	return
 fi
 git clone https://github.com/freqtrade/freqtrade.git
@@ -53,6 +56,7 @@ if [ -d freqtrade ]; then
   echo "Verification successful"
 else
   echo "${RED}ERR${NC}: Folder doesn't exist!. Installation possibly failed?"
+  cd Freqtrade_installer
   return
 fi
 echo "Going to dir: /freqtrade"
