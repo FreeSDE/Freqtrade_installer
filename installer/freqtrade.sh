@@ -17,8 +17,9 @@ while true; do
 			* ) break;;
 		esac
 		
-		if [ c -eq 1 ]
+		if [ c -eq 1 ]; then
 			break;
+		fi
 		;;
         * ) echo -e "Docker installation might have some specific requirements for users.\nYou have been warned... [Press Y (cap sensitive) to accept or press any key to decline"
 		read 
@@ -82,7 +83,7 @@ echo "Verifying if directory exists"
 if [ -d freqtrade ]; then
   echo "Verification successful"
 else
-  echo "${RED}ERR${NC}: Folder doesn't exist!. Installation possibly failed?"
+  echo "${RED}ERR${NC}: Folder doesn't exist!. Installation possibly failed to detect an error!? This should be reported to the repository immediately!"
   cd Freqtrade_installer
   return
 fi
