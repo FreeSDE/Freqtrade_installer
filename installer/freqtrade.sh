@@ -32,9 +32,9 @@ while true; do
     esac
 done
 
-if [ docker -eq 1 ]; then
+if [ "$docker" -eq 1 ]; then
 	echo "Hello, world"
-	wait 2
+	sleep 2
 fi
 
 # update repository
