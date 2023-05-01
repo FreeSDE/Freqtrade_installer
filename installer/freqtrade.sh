@@ -3,7 +3,7 @@ version="pre v0.1"
 RED='\033[0;31m' # Color red
 NC='\033[0m' # No Color
 docker=0
-#Switches to docker install than exits
+# Docker request
 yn=""
 while true; do
     read -p "Do you want docker [Y/n]: " yn
@@ -13,7 +13,7 @@ while true; do
 		c=1
 		case $yn in
 			
-			[Y]* ) echo "Docker installation won't be used!"; c=1 break;;
+			[Y]* ) echo "Docker installation won't be used!"; c=1; break;;
 			* ) break;;
 		esac
 		
@@ -31,15 +31,40 @@ while true; do
 		;;
     esac
 done
-
+cd ..
+cd ..
+# Docker installation
 if [ "$docker" -eq 1 ]; then
-	echo "Hello, world"
-	sleep 2
+	echo "Installing Docker"
+	if ping -c 1 archive.ubuntu.com &> /dev/null; then
+		echo ""
+		else
+		echo -e "${RED}ERR${NC}: Internet connection doesn't exist or you have weak internet.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router"
+		cd Freqtrade_installer
+		cd installer
+		return
+	fi
+	sudo apt install docker docker-compose
+	echo "Verifying if Docker installed correctly"
+	com=$(sudo docker run hello-world)
+	if [ -z "$com" ]; then
+		echo "${RED}ERR${NC}: Docker wasn't installed properly. Installation will be attempt to remove docker"
+		sudo apt-get remove docker docker-engine docker.io containerd runc &> /dev/null
+		echo "Checking if removal was successful"
+		com=$(docker --version)
+		if [ $? -ne 0]; then
+			echo "Successful! Exiting installation"
+			cd Freqtrade_installer
+			cd installer
+			return
+		fi
+	else 
+		echo "The installation of docker was successful!"
+	fi
+
 fi
 
 # update repository
-cd ..
-cd ..
 echo "Updating repository"
 sleep 1
 # Checks if internet exists
