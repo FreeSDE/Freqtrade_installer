@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Expfeatures",
+    "\\installer"
   ],
+  "SelectedNode": "\\installer\\freqtrade.sh",
   "PreviewInSolutionExplorer": false
 }

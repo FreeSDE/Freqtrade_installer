@@ -2,11 +2,38 @@ answer=""
 version="pre v0.1"
 RED='\033[0;31m' # Color red
 NC='\033[0m' # No Color
-echo "Do you want docker [Y/n] "
-read answer
+docker=0
 #Switches to docker install than exits
-if [ answer != "n" ]; then
-	echo "Srry, this repository version doesn't have docker. Don't worry the current version is $version"
+yn=""
+while true; do
+    read -p "Do you want docker [Y/n]: " yn
+    case $yn in
+        [n]* ) echo "Are you sure to not use docker? Docker is recommended for more user friendly experience [Press Y (cap sensitive) to accept or press any key to decline";
+		read yn
+		c=1
+		case $yn in
+			
+			[Y]* ) echo "Docker installation won't be used!"; c=1 break;;
+			* ) break;;
+		esac
+		
+		if [ c -eq 1 ]
+			break;
+		;;
+        * ) echo -e "Docker installation might have some specific requirements for users.\nYou have been warned... [Press Y (cap sensitive) to accept or press any key to decline"
+		read 
+		case $yn in
+			
+			[Y]* ) echo "Docker installation Enabled!"; docker=1; break;;
+			* ) echo "Docker installation won't be used!" break;;
+		esac
+		;;
+    esac
+done
+
+if [ docker -ne 0 ]; then
+	echo "Hello, world"
+	wait 2
 fi
 
 # update repository

@@ -1,1 +1,0 @@
-echo "Are you sure to uninstall this installer, "
