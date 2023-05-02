@@ -57,11 +57,16 @@ if [ "$docker" -eq 1 ]; then
 			cd Freqtrade_installer
 			cd installer
 			return
+		else
+			echo "${RED}DANGER${NC}: Removal process failed fatally!"
+			cd Freqtrade_installer
+			cd installer
 		fi
+
 	else 
 		echo "The installation of docker was successful!"
 	fi
-
+	echo "Downloading Freqtrade Docker Image"
 fi
 
 # update repository
