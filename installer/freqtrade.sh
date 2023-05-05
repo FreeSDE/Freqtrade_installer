@@ -104,7 +104,15 @@ if [ "$docker" -eq 1 ]; then
 		return
 	fi
 	sudo curl https://raw.githubusercontent.com/freqtrade/freqtrade/stable/docker-compose.yml -o docker-compose.yml &> /dev/null
+	echo "Finished!"
+	echo "Pulling the image into the system"
 	sudo docker-compose pull &> /dev/null
+	echo "Creating the file structure"
+	echo "The few next commands might require input. be prepared!"
+	sudo docker-compose run --rm freqtrade create-userdir --userdir user_data
+	sudo docker-compose run --rm freqtrade new-config --config user_data/config.json
+	echo "Installaton Finished! We will start the bot for you!"
+	sudo docker-compose up
 else
 	# update repository
 	echo "Updating repository"
