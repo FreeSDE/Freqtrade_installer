@@ -80,9 +80,6 @@ if [ "$docker" -eq 1 ]; then
 		if sudo mkdir ft_userdata &> /dev/null; then
 			echo ""
 			cd ft_userdata/
-		if sudo mkdir ft_userdata &> dev/null; then
-			echo ""
-
 		else
 			echo "${RED}ERR${NC}: Unexpected error appeared. $?"
 			echo "Exiting installation (WARNING: THERE MIGHT BE OTHER DIRECTORY THAT WILL BE LEFT BEHIND)"
