@@ -42,7 +42,7 @@ if [ "$docker" -eq 1 ]; then
 		echo "Installing Docker"
 		if ping -c 1 archive.ubuntu.com &> /dev/null; then
 			echo ""
-			else
+		else
 			echo -e "${RED}ERR${NC}: Internet connection doesn't exist or you have weak internet.\nPlease check your router, ethernet or wifi for any reasons. Few solutions that may assist you:\nconnect the internet\nReboot your router"
 			cd Freqtrade_installer
 			cd installer
@@ -53,7 +53,7 @@ if [ "$docker" -eq 1 ]; then
 		com=$(sudo docker run hello-world)
 		DOCKER_ID=$(docker ps -q)
 		sudo docker stop $DOCKER_ID
-			if [ -z "$com" ]; then
+		if [ -z "$com" ]; then
 			echo "${RED}ERR${NC}: Docker wasn't installed properly. Installation will be attempt to remove docker"
 			sudo apt-get remove docker docker-engine docker.io containerd runc &> /dev/null
 			echo "Checking if removal was successful"
@@ -68,7 +68,7 @@ if [ "$docker" -eq 1 ]; then
 			cd Freqtrade_installer
 			cd installer
 			return
-			fi
+		fi
  
 		echo "The installation of docker was successful!"
 	fi
