@@ -1,6 +1,7 @@
 answer=""
 version="pre v0.1"
 RED='\033[0;31m' # Color red
+DARK_RED='\033[0;31;40m' # Color dark red
 NC='\033[0m' # No Color
 docker=0
 # Docker request
@@ -8,25 +9,24 @@ yn=""
 while true; do
     read -p "Do you want docker [Y/n]: " yn
     case $yn in
-        [n]* ) echo "Are you sure to not use docker? Docker is recommended for more user friendly experience [Press Y (cap sensitive) to accept or press any key to decline";
+        [n]* ) echo "Are you sure to not use docker? Docker is recommended for more user friendly experience [Press Y (cap sensitive) to accept or press any key to decline"
 		read yn
-		c=1
 		case $yn in
 			
 			[Y]* ) echo "Docker installation won't be used!"; c=1; break;;
 			* ) break;;
 		esac
 		
-		if [ c -eq 1 ]; then
+		if [ $c -eq 1 ]; then
 			break;
 		fi
 		;;
         * ) echo -e "Docker installation might have some specific requirements for users.\nYou have been warned... [Press Y (cap sensitive) to accept or press any key to decline"
-		read 
+		read yn
 		case $yn in
 			
 			[Y]* ) echo "Docker installation Enabled!"; docker=1; break;;
-			* ) echo "Docker installation won't be used!" break;;
+			* ) echo "Docker installation won't be used!"; break;;
 		esac
 		;;
     esac
@@ -52,15 +52,16 @@ if [ "$docker" -eq 1 ]; then
 		sudo apt-get remove docker docker-engine docker.io containerd runc &> /dev/null
 		echo "Checking if removal was successful"
 		com=$(docker --version)
-		if [ $? -ne 0]; then
+		if [ $? -ne 0 ]; then
 			echo "Successful! Exiting installation"
 			cd Freqtrade_installer
 			cd installer
 			return
 		else
-			echo "${RED}DANGER${NC}: Removal process failed fatally!"
+			echo "${DARK_RED}DANGER${NC}: Removal process failed fatally!"
 			cd Freqtrade_installer
 			cd installer
+			return
 		fi
 
 	else 
