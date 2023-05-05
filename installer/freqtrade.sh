@@ -106,7 +106,7 @@ if [ "$docker" -eq 1 ]; then
 	sudo curl https://raw.githubusercontent.com/freqtrade/freqtrade/stable/docker-compose.yml -o docker-compose.yml &> /dev/null
 	echo "Finished!"
 	echo "Pulling the image into the system"
-	sudo docker-compose pull &> /dev/null
+	sudo docker-compose pull
 	echo "Creating the file structure"
 	echo "The few next commands might require input. be prepared!"
 	sudo docker-compose run --rm freqtrade create-userdir --userdir user_data

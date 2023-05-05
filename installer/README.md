@@ -9,7 +9,7 @@ What to expect from downloading this:
 
 	When you download it from the repository, you must first enter the directory you have in then run the file as 'source freqtrade.sh' and this should install it properly and place you in a correct directory
 	however, this is not what the original creators of freqtrade might want. We recommend you to go to https://www.freqtrade.io and read documentation. I am just a developer that wants to make other lives more easy and convenient
-	As of now, installing through docker is possible however is experimental and everyone to understand that this software is still WIP (Work In Progress) and the software will change as new features get implemented and old buggy features get deprecated
+	As of now, installing through docker has been tested thoroughly however please everyone understand that this software is still WIP (Work In Progress) and the software will change as new features get implemented and old buggy features get deprecated
 
 Thank you for downloading the installer
 
