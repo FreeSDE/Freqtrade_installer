@@ -1,6 +1,7 @@
 answer=""
 version="pre v0.1"
 RED='\033[0;31m' # Color red
+DARK_RED='\033[0;31;40m' # Color dark red
 NC='\033[0m' # No Color
 docker=0
 # Docker request
@@ -8,7 +9,7 @@ yn=""
 while true; do
     read -p "Do you want docker [Y/n]: " yn
     case $yn in
-        [n]* ) echo "Are you sure to not use docker? Docker is recommended for more user friendly experience [Press Y (cap sensitive) to accept or press any key to decline";
+        [n]* ) echo "Are you sure to not use docker? Docker is recommended for more user friendly experience [Press Y (cap sensitive) to accept or press any key to decline"
 		read yn
 		c=1
 		case $yn in
@@ -58,9 +59,10 @@ if [ "$docker" -eq 1 ]; then
 			cd installer
 			return
 		else
-			echo "${RED}DANGER${NC}: Removal process failed fatally!"
+			echo "${DARK_RED}DANGER${NC}: Removal process failed fatally!"
 			cd Freqtrade_installer
 			cd installer
+			return
 		fi
 
 	else 
