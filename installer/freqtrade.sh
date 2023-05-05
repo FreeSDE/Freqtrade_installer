@@ -65,6 +65,7 @@ if [ "$docker" -eq 1 ]; then
 				return
 			else
 				echo "${DARK_RED}DANGER${NC}: Removal process failed fatally!"
+			fi
 			cd Freqtrade_installer
 			cd installer
 			return
