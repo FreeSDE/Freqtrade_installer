@@ -36,7 +36,7 @@ cd ..
 # Whether docker installation or regular
 if [ "$docker" -eq 1 ]; then
 	# Checks if docker already exists
-	if docker --version &> dev/null; then
+	if docker --version &> /dev/null; then
 		echo "Docker already exists on the System!"
 	else
 		echo "Installing Docker"
@@ -50,9 +50,9 @@ if [ "$docker" -eq 1 ]; then
 		fi
 		sudo apt install docker docker-compose &> /dev/null
 		echo "Verifying if Docker installed correctly"
-		com=$(sudo docker run hello-world)
-		DOCKER_ID=$(docker ps -q)
-		sudo docker stop $DOCKER_ID
+		com=$(sudo docker run hello-world &> /dev/null)
+		DOCKER_ID=$(sudo docker ps -q &> /dev/null)
+		sudo docker stop $DOCKER_ID &> /dev/null
 		if [ -z "$com" ]; then
 			echo "${RED}ERR${NC}: Docker wasn't installed properly. Installation will be attempt to remove docker"
 			sudo apt-get remove docker docker-engine docker.io containerd runc &> /dev/null
@@ -77,10 +77,11 @@ if [ "$docker" -eq 1 ]; then
 	cd /opt
 	if [ -d "ft_userdata/" ]; then
 		echo "Canceling operation due to already having the directory created"
+		cd ft_userdata
 	else
 		if sudo mkdir ft_userdata &> /dev/null; then
 			echo ""
-			cd ft_userdata/
+			cd ft_userdata
 		else
 			echo "${RED}ERR${NC}: Unexpected error appeared. $?"
 			echo "Exiting installation (WARNING: THERE MIGHT BE OTHER DIRECTORY THAT WILL BE LEFT BEHIND)"
@@ -90,7 +91,7 @@ if [ "$docker" -eq 1 ]; then
 			return
 		fi
 	fi			
-	cd ft_userdata/
+	
 
 	echo "Downloading Freqtrade Docker Image"
 	if ping -c 1 raw.githubusercontent.com &> /dev/null; then
