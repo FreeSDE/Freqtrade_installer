@@ -77,14 +77,12 @@ if [ "$docker" -eq 1 ]; then
 	if [ -d "ft_userdata/" ]; then
 		echo "Canceling operation due to already having the directory created"
 	else
-<<<<<<< HEAD
 		if sudo mkdir ft_userdata &> /dev/null; then
 			echo ""
 			cd ft_userdata/
-=======
 		if sudo mkdir ft_userdata &> dev/null; then
 			echo ""
->>>>>>> e2029e5d18f08d34c6a7e1eaf777dfe7c8240d74
+
 		else
 			echo "${RED}ERR${NC}: Unexpected error appeared. $?"
 			echo "Exiting installation (WARNING: THERE MIGHT BE OTHER DIRECTORY THAT WILL BE LEFT BEHIND)"
@@ -92,13 +90,10 @@ if [ "$docker" -eq 1 ]; then
 			cd Freqtrade_installer
 			cd installer
 			return
-<<<<<<< HEAD
 		fi
-	fi
-=======
-			
+	fi			
 	cd ft_userdata/
->>>>>>> e2029e5d18f08d34c6a7e1eaf777dfe7c8240d74
+
 	echo "Downloading Freqtrade Docker Image"
 	if ping -c 1 raw.githubusercontent.com &> /dev/null; then
 		echo ""
