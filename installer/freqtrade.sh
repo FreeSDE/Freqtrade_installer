@@ -72,7 +72,7 @@ create_config() {
 		touch "regular.ftconfig"
 		echo "Created file"
 	}
-	
+	fi
 }
 # Docker request
 if [ $r -ne 1] && [ $d -ne 1 ]; then
