@@ -50,6 +50,7 @@ check_config() {
 	else
 		
 		echo ""
+	fi
 }
 create_specialconfig() {
 	# Creates a config file to declare the installation is finished
