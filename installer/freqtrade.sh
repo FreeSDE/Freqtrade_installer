@@ -76,7 +76,7 @@ create_config() {
 }
 cd ..
 cd Data
-check_config()
+check_config
 cd ..
 cd installer
 # Docker request
@@ -106,7 +106,7 @@ if [ $r -ne 1 ] && [ $d -ne 1 ]; then
 	done
 	cd ..
 	cd Data
-	create_config()
+	create_config
 	cd ..
 	cd ..
 else
@@ -195,7 +195,7 @@ if [ "$docker" -eq 1 ]; then
 	sudo docker-compose run --rm freqtrade create-userdir --userdir user_data
 	sudo docker-compose run --rm freqtrade new-config --config user_data/config.json
 	echo "Installaton Finished! We will start the bot for you!"
-	create_specialconfig()
+	create_specialconfig
 	sudo docker-compose up
 else
 	# update repository
@@ -267,7 +267,7 @@ else
 	cd ..
 	cd Freqtrade_installer
 	cd Data
-	create_specialconfig()
+	create_specialconfig
 	cd ..
 	cd ..
 	cd freqtrade
