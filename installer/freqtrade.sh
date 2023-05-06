@@ -87,11 +87,9 @@ if [ $r -ne 1] && [ $d -ne 1 ]; then
 				[n]* ) echo "Are you sure to not use docker? Docker is recommended for more user friendly experience [Press Y (cap sensitive) to accept or press any key to decline"
 				read yn
 				case $yn in
-				
 					[Y]* ) echo "Docker installation won't be used!"; c=1; break;;
 					* ) break;;
 				esac
-		
 				if [ $c -eq 1 ]; then
 					break;
 				fi
@@ -99,7 +97,6 @@ if [ $r -ne 1] && [ $d -ne 1 ]; then
 				* ) echo -e "Docker installation might have some specific requirements for users.\nYou have been warned... [Press Y (cap sensitive) to accept or press any key to decline"
 				read yn
 				case $yn in
-				
 					[Y]* ) echo "Docker installation Enabled!"; docker=1; break;;
 					* ) echo "Docker installation won't be used!"; break;;
 				esac
