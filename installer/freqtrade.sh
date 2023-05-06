@@ -61,7 +61,7 @@ create_specialconfig() {
 }
 create_config() {
 	# Creates a config file to be used later
-	if [ "docker" -ne 0 ]; then
+	if [ "$docker" -ne 0 ]; then
 
 		
 		touch "docker.ftconfig"
