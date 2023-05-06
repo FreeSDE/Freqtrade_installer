@@ -4,35 +4,112 @@ RED='\033[0;31m' # Color red
 DARK_RED='\033[0;31;40m' # Color dark red
 NC='\033[0m' # No Color
 docker=0
-# Docker request
+d=0
+r=0
 yn=""
-while true; do
-    read -p "Do you want docker [Y/n]: " yn
-    case $yn in
-        [n]* ) echo "Are you sure to not use docker? Docker is recommended for more user friendly experience [Press Y (cap sensitive) to accept or press any key to decline"
-		read yn
-		case $yn in
-			
-			[Y]* ) echo "Docker installation won't be used!"; c=1; break;;
-			* ) break;;
-		esac
+# Declaring functions
+check_config() {
+	# Checks if an installation may've happened
+	if [ -e "docker.ftconfig" ] && [ ! -f "fi.ftconfig" ]; then
+
 		
-		if [ $c -eq 1 ]; then
-			break;
-		fi
-		;;
-        * ) echo -e "Docker installation might have some specific requirements for users.\nYou have been warned... [Press Y (cap sensitive) to accept or press any key to decline"
-		read yn
-		case $yn in
-			
-			[Y]* ) echo "Docker installation Enabled!"; docker=1; break;;
-			* ) echo "Docker installation won't be used!"; break;;
+		
+		echo "We have detected an attempted installation, Would you like to continue it? [N/y]"
+		while true; do
+			read yn
+			case $yn in
+				[y]* ) echo "We will continue in your installation, and we apologize in advance if you had experienced an error"
+				d=1
+				break
+				* ) echo "we will go back to default, if you didn't mean it you can always ^C and retry this dialogue, we will wait!"
+				sleep 5
+				echo "It seems like you would like to continue, very well. restarting installation"
+				rm *.ftconfig
+				break
+				;;
+			esac
+		done
+	elif [ -e "regular.ftconfig" ] && [ ! -f "fi.ftconfig" ]; then
+		echo "We have detected an attempted installation, Would you like to continue it? [N/y]"
+		while true; do
+			read yn
+			case $yn in
+				[y]* ) echo "We will continue in your installation, and we apologize in advance if you had experienced an error"
+				r=1
+				break
+				* ) echo "we will go back to default, if you didn't mean it you can always ^C and retry this dialogue, we will wait!"
+				sleep 5
+				echo "It seems like you would like to continue, very well. restarting installation"
+				rm *.ftconfig
+				break
+				;;
+			esac
+		done
+	else
+		
+		echo ""
+}
+create_specialconfig() {
+	# Creates a config file to declare the installation is finished
+
+
+	touch "fi.ftconfig"
+	echo ""
+}
+create_config() {
+	# Creates a config file to be used later
+	if [ docker -ne 0 ]; then
+
+		
+		touch "docker.ftconfig"
+		echo "Created file"
+	else {
+
+
+		touch "regular.ftconfig"
+		echo "Created file"
+	}
+	
+}
+# Docker request
+if [ $r -ne 1] && [ $d -ne 1 ]; then
+	while true; do
+		read -p "Do you want docker [Y/n]: " yn
+			case $yn in
+				[n]* ) echo "Are you sure to not use docker? Docker is recommended for more user friendly experience [Press Y (cap sensitive) to accept or press any key to decline"
+				read yn
+				case $yn in
+				
+					[Y]* ) echo "Docker installation won't be used!"; c=1; break;;
+					* ) break;;
+				esac
+		
+				if [ $c -eq 1 ]; then
+					break;
+				fi
+				;;
+				* ) echo -e "Docker installation might have some specific requirements for users.\nYou have been warned... [Press Y (cap sensitive) to accept or press any key to decline"
+				read yn
+				case $yn in
+				
+					[Y]* ) echo "Docker installation Enabled!"; docker=1; break;;
+					* ) echo "Docker installation won't be used!"; break;;
+				esac
+			;;
 		esac
-		;;
-    esac
-done
-cd ..
-cd ..
+	done
+	cd ..
+	cd Data
+	create_config()
+	cd ..
+	cd ..
+fi
+else
+	cd ..
+	cd ..
+	if [ $d -eq 1]; then
+	docker=1
+	fi
 # Whether docker installation or regular
 if [ "$docker" -eq 1 ]; then
 	# Checks if docker already exists
@@ -112,6 +189,7 @@ if [ "$docker" -eq 1 ]; then
 	sudo docker-compose run --rm freqtrade create-userdir --userdir user_data
 	sudo docker-compose run --rm freqtrade new-config --config user_data/config.json
 	echo "Installaton Finished! We will start the bot for you!"
+	create_specialconfig()
 	sudo docker-compose up
 else
 	# update repository
@@ -180,5 +258,12 @@ else
 		echo "${RED}ERR${NC}: Something went wrong, check the above for a possible error"
 		return
 	fi
+	cd ..
+	cd Freqtrade_installer
+	cd Data
+	create_specialconfig()
+	cd ..
+	cd ..
+	cd freqtrade
 	echo -e "You're now ready to run the bot!\nAll you need to do is 'source .env/bin/activate' to enter the enviroment and 'freqtrade --help' and figure out what to do next!"
 fi
