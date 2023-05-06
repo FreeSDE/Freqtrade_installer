@@ -21,6 +21,7 @@ check_config() {
 				[y]* ) echo "We will continue in your installation, and we apologize in advance if you had experienced an error"
 				d=1
 				break
+				;;
 				* ) echo "we will go back to default, if you didn't mean it you can always ^C and retry this dialogue, we will wait!"
 				sleep 5
 				echo "It seems like you would like to continue, very well. restarting installation"
@@ -37,6 +38,7 @@ check_config() {
 				[y]* ) echo "We will continue in your installation, and we apologize in advance if you had experienced an error"
 				r=1
 				break
+				;;
 				* ) echo "we will go back to default, if you didn't mean it you can always ^C and retry this dialogue, we will wait!"
 				sleep 5
 				echo "It seems like you would like to continue, very well. restarting installation"
