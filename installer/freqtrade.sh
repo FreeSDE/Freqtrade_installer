@@ -106,13 +106,12 @@ if [ $r -ne 1] && [ $d -ne 1 ]; then
 	create_config()
 	cd ..
 	cd ..
-fi
 else
 	cd ..
 	cd ..
 	if [ $d -eq 1]; then
 	docker=1
-	fi
+fi
 # Whether docker installation or regular
 if [ "$docker" -eq 1 ]; then
 	# Checks if docker already exists
