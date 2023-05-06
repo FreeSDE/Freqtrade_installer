@@ -80,7 +80,7 @@ check_config
 cd ..
 cd installer
 # Docker request
-if [ $r -ne 1 ] && [ $d -ne 1 ]; then
+if [ "$r" -ne 1 ] && [ "$d" -ne 1 ]; then
 	while true; do
 		read -p "Do you want docker [Y/n]: " yn
 			case $yn in
@@ -112,7 +112,7 @@ if [ $r -ne 1 ] && [ $d -ne 1 ]; then
 else
 	cd ..
 	cd ..
-	if [ $d -eq 1 ]; then
+	if [ "$d" -eq 1 ]; then
 		docker=1
 	fi
 fi
