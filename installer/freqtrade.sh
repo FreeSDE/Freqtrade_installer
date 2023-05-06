@@ -110,7 +110,7 @@ else
 	cd ..
 	cd ..
 	if [ $d -eq 1]; then
-	docker=1
+		docker=1
 	fi
 fi
 # Whether docker installation or regular
