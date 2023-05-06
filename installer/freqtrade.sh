@@ -74,6 +74,11 @@ create_config() {
 	}
 	fi
 }
+cd ..
+cd Data
+check_config()
+cd ..
+cd installer
 # Docker request
 if [ $r -ne 1] && [ $d -ne 1 ]; then
 	while true; do
@@ -98,8 +103,8 @@ if [ $r -ne 1] && [ $d -ne 1 ]; then
 					[Y]* ) echo "Docker installation Enabled!"; docker=1; break;;
 					* ) echo "Docker installation won't be used!"; break;;
 				esac
-			;;
-		esac
+				;;
+			esac
 	done
 	cd ..
 	cd Data
