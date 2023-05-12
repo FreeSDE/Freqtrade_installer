@@ -257,7 +257,7 @@ if [ "$docker" -eq 1 ]; then
 	echo "Installaton Finished!"
 	create_specialconfig
 	yesorno "Do you want to start the bot?"
-	if [ $? -eq 1 ]; then
+	if [ $? -eq 2 ]; then
 		sudo docker-compose up
 	fi
 else
