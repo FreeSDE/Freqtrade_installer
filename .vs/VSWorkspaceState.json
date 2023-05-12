@@ -1,9 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Data",
     "\\Expfeatures",
+    "\\Expfeatures\\feedback",
+    "\\Expfeatures\\uninstall",
+    "\\Expfeatures\\updater",
     "\\installer"
   ],
-  "SelectedNode": "\\installer\\README.md",
+  "SelectedNode": "\\installer\\freqtrade.sh",
   "PreviewInSolutionExplorer": false
 }

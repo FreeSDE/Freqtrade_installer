@@ -3,11 +3,52 @@ version="pre v0.1"
 RED='\033[0;31m' # Color red
 DARK_RED='\033[0;31;40m' # Color dark red
 NC='\033[0m' # No Color
+YELLOW='\033[33m' # Color yellow
 docker=0
 d=0
 r=0
 yn=""
 # Declaring functions
+yesorno() {
+	# Yes or No function
+	b=0 # If this is true than the user stated Yes
+	f=0 # If this is true than the user stated No
+	j=0 # The result (If j = 2 than it means the user stated yes and if j = 1 than it means the user stated no and if none than an error happened)
+	# Code
+	while true; do
+		read -p "$1 [Y/n]" yn
+			case $yn in
+				[n]* ) echo "Are you sure? [N/Y]"
+				read yn
+				case $yn in
+					[Y]* ) echo ""; f=1; break;;
+					* ) break;;
+				esac
+				if [ $c -eq 1 ]; then
+					break;
+				fi
+				;;
+				* ) echo -e "Are you sure? [N/Y]"
+				read yn
+				case $yn in
+					[Y]* ) echo ""; break;;
+					* ) echo ""; b=1 break;;
+				esac
+				;;
+			esac
+		echo ""
+	done
+	
+	if [ $f -eq 1 ]; then
+		j=1
+		echo ""
+	else
+
+		j=2
+	fi
+	
+	return $j
+}
 check_config() {
 	# Checks if an installation may've happened
 	if [ -e "docker.ftconfig" ] && [ ! -f "fi.ftconfig" ]; then
@@ -56,7 +97,7 @@ create_specialconfig() {
 	# Creates a config file to declare the installation is finished
 
 
-	touch "fi.ftconfig"
+	sudo touch "fi.ftconfig"
 	echo ""
 }
 create_config() {
@@ -74,8 +115,27 @@ create_config() {
 	}
 	fi
 }
+k=0
+check_system() {
+	
+	if grep -q -E '^(ID|NAME)="?(debian|ubuntu)' /etc/os-release; then
+		echo ""
+	else
+		echo "${YELLOW}UNSUPPORTED OS${NC}: We have detected an unsupported OS. We advise you to terminiate this process immediately to prevent any potential damage"
+		yesorno "Do you want to continue? We don't support this OS however we give you the option to ignore this WE DON'T ADVISE THIS!"
+		if [ $? -ne 2 ]; then
+			k=1
+		fi
+	fi
+	echo ""
+}
+
 cd ..
 cd Data
+check_system
+if [ $k -eq 1 ]; then
+	return
+fi
 check_config
 cd ..
 cd installer
@@ -194,9 +254,12 @@ if [ "$docker" -eq 1 ]; then
 	echo "The few next commands might require input. be prepared!"
 	sudo docker-compose run --rm freqtrade create-userdir --userdir user_data
 	sudo docker-compose run --rm freqtrade new-config --config user_data/config.json
-	echo "Installaton Finished! We will start the bot for you!"
+	echo "Installaton Finished!"
 	create_specialconfig
-	sudo docker-compose up
+	yesorno "Do you want to start the bot?"
+	if [ $? -eq 1 ]; then
+		sudo docker-compose up
+	fi
 else
 	# update repository
 	echo "Updating repository"
