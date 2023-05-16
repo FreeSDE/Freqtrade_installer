@@ -259,6 +259,9 @@ if [ "$docker" -eq 1 ]; then
 	yesorno "Do you want to start the bot?"
 	if [ $? -eq 2 ]; then
 		sudo docker-compose up
+	else
+		
+		echo "Alright! However, if you do want to run the bot do the following command 'sudo docker-compose up'"
 	fi
 else
 	# update repository
