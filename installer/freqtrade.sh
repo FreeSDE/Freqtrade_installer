@@ -168,10 +168,6 @@ if [ "$r" -ne 1 ] && [ "$d" -ne 1 ]; then
 	cd Data
 	create_config
 	cd ..
-	cd ..
-else
-	cd ..
-	cd ..
 	if [ "$d" -eq 1 ]; then
 		docker=1
 	fi
