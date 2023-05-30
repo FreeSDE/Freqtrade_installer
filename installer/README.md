@@ -31,3 +31,8 @@ Simply run the script, and it will guide you through the process. The script wil
 ## Note
 
 Although the script does its best to handle potential issues, it's always recommended to understand what the script does before running it. Please review the script and ensure you're comfortable with the actions it performs on your system. If the script fails at any point, the provided messages should guide you towards resolving the issue.
+
+In addition that if you ever need Technical support. Create a New Issue and we will respond as fast as possible.
+
+We wish you best of luck to those who downloaded the script!
+by FreeSDE Developer (aka me)
