@@ -2,6 +2,8 @@
 
 This script automates the installation process of Freqtrade, a cryptocurrency trading bot, on Debian-based Linux distributions. 
 
+> **NOTE:** This is a Work-In-Progress (WIP) script, meaning it is currently under development and may not function perfectly. Always ensure you understand what the script is doing before running it. 
+
 ## Script Features
 
 ### 1. OS Compatibility Check
