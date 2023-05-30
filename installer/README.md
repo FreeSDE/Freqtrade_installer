@@ -1,21 +1,33 @@
-What to expect from downloading this:
-	The features:
-		We have many features including a Docker Installation
-		We have many checks to make sure you won't have any potential issues and prevent Errors
-		We will try to fix all problem that happened to you by submitting a Issue and We will answer as fast as possible!
-	
-	Required Dependencies are of the following:
-		git -- sudo apt install git
+# Freqtrade Installer
 
-	When you download it from the repository, you must first enter the directory you have in then run the file as 'source freqtrade.sh' and this should install it properly and place you in a correct directory
-	however, this is not what the original creators of freqtrade might want. We recommend you to go to https://www.freqtrade.io and read documentation. I am just a developer that wants to make other lives more easy and convenient
-	As of now, installing through docker has been tested thoroughly however please everyone understand that this software is still WIP (Work In Progress) and the software will change as new features get implemented and old buggy features get deprecated
+This script automates the installation process of Freqtrade, a cryptocurrency trading bot, on Debian-based Linux distributions. 
 
-Thank you for downloading the installer
+## Script Features
 
-Sincerely, FreeSDE
+### 1. OS Compatibility Check
 
-This version is ubuntu only! Do not install with this software on a different OS
+The script verifies if your system is running a Debian-based Linux distribution. It will still run on unsupported systems after displaying a warning, but this is not advised.
 
-Disclaimer: This is not official software, we don't own freqtrade or freqtrade.io. Your installation might vary version to version and if you find a problem, make sure to submit the problem to the issue tab on the repository. We'll try to fix them
+### 2. Previous Installation Check
 
+If an installation attempt is detected from a previous run, the script will prompt you with the choice to continue from where you left off or restart the installation process.
+
+### 3. Installation Choices
+
+You are given the choice to install Freqtrade regularly or within a Docker container. 
+
+- **Docker Installation:** If Docker is not installed, the script will install Docker and Docker Compose. Then, it downloads the Freqtrade Docker image, sets up the necessary directories, and completes the Freqtrade setup within a Docker container. 
+
+- **Regular Installation:** This includes updating repositories, installing necessary packages, cloning the Freqtrade repository, verifying directories, and executing the Freqtrade setup script. 
+
+### 4. Bot Startup
+
+After installation, the script will prompt you with the option to start the bot immediately. 
+
+## Installation Instructions
+
+Simply run the script, and it will guide you through the process. The script will prompt you for necessary inputs and decisions along the way. 
+
+## Note
+
+Although the script does its best to handle potential issues, it's always recommended to understand what the script does before running it. Please review the script and ensure you're comfortable with the actions it performs on your system. If the script fails at any point, the provided messages should guide you towards resolving the issue.
